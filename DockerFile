@@ -1,0 +1,16 @@
+FROM ghcr.io/astral-sh/uv:python3.12-bookworm-slim
+
+WORKDIR /app
+
+# Copy dependency file
+COPY pyproject.toml .
+
+# Install dependencies using uv
+RUN uv pip install --system -e .
+
+# Copy application code
+COPY main.py .
+
+EXPOSE 8000
+
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]

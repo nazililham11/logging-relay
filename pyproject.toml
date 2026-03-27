@@ -1,0 +1,55 @@
+[project]
+name = "logging-relay"
+version = "0.1.0"
+description = "A minimal HTTP-to-Loki log forwarder with Redis buffering"
+readme = "README.md"
+requires-python = ">=3.12"
+
+dependencies = [
+    "fastapi[standard]>=0.135.2",
+    "httpx>=0.28.1",
+    "python-dotenv>=1.2.2",
+    "python-logging-loki>=0.3.1",
+    "redis>=7.4.0",
+]
+
+[dependency-groups]
+dev = [
+    "ruff>=0.15.8",
+    "ty>=0.0.26",
+]
+
+[tool.ruff.lint]
+select = [
+    "E",   # pycodestyle errors
+    "W",   # pycodestyle warnings
+    "F",   # pyflakes
+    "I",   # isort
+    "B",   # flake8-bugbear
+    "C4",  # flake8-comprehensions
+ ]
+ignore = [
+    "B008",  # Allow function calls in argument defaults
+    "B904",  # Allow raising exceptions without from e, for HTTPException
+    "E501",  # Allow too long line
+    "E722",  # Allow raising empty exceptions
+]
+
+[tool.ruff]
+line-length = 130
+indent-width = 4
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "auto"
+
+[tool.ruff.lint.per-file-ignores]
+"**/__init__.py" = [
+    "F401",       # unused-import
+    "F403",       # unused-import
+]
+
+[tool.ty.src]
+include = ["src"]

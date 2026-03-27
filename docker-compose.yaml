@@ -1,0 +1,23 @@
+version: "3.8"
+
+networks:
+  web-network:
+    external: true
+
+services:
+  relay:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: logging-relay
+    ports:
+      - "8000:8000"
+    environment:
+      - REDIS_URL=${REDIS_URL}
+      - LOKI_URL=${LOKI_URL}
+      - ADMIN_KEY=${ADMIN_KEY}
+      - LOKI_USERNAME=${LOKI_USERNAME}
+      - LOKI_PASSWORD=${LOKI_PASSWORD}
+    networks:
+      - web-network
+    restart: unless-stopped
