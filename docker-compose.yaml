@@ -14,8 +14,8 @@ services:
       - "8000:8000"
     environment:
       - REDIS_URL=${REDIS_URL}
-      - LOKI_URL=${LOKI_URL}
-      - ADMIN_KEY=${ADMIN_KEY}
+      - MASTER_ADMIN_KEY=${MASTER_ADMIN_KEY}
+      - LOKI_BASE_URL=${LOKI_BASE_URL}
       - LOKI_USERNAME=${LOKI_USERNAME}
       - LOKI_PASSWORD=${LOKI_PASSWORD}
     networks:
